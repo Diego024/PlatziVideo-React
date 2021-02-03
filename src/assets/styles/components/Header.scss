@@ -7,6 +7,10 @@
     align-items: center;
 }
 
+.isLogin, .isRegister, .isNotFound{
+    background-color: #21c08b;
+}
+
 .header__img {
     width: 200px;
     margin-top: 10px;
@@ -50,6 +54,8 @@
 }
 
 .header__menu--profile img {
+    border-radius: 100%;
+    object-fit: cover;
     margin-right: 8px;
     width: 40px;
 }

@@ -7,7 +7,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/',
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -45,12 +46,15 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: { 
-                            name: 'assets/[hash].[ext]' 
+                            name: '[hash].[ext]' 
                         },
                     }
                 ],
             },
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({

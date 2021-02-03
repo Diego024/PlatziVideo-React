@@ -1,0 +1,27 @@
+.main_notFound {
+    background-color: #8F57FD;
+    width: 100%;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    min-height: calc(100vh - 180);
+}
+
+.main__title {
+    font-size: 60px;
+    font-weight: bold;
+    animation: pulse 1.2s 4ms infinite ;
+}
+
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+.main__p {
+    font-size: 14px;
+}

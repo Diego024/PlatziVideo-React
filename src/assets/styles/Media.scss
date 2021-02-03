@@ -6,9 +6,15 @@
         justify-content: space-around;
         height: 125px;
     }
-
+    
     .carousel__container:hover .carousel-item:last-child {
         margin-right: 300px;
     }
-
+    
+    .login__container {
+      background-color: transparent;
+      border: none;
+      padding: 0px;
+      width: 100%;
+    }
 }

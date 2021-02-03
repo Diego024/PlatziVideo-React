@@ -1,23 +1,78 @@
 import React from 'react'
+import className from 'classnames'
+import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+import {logoutRequest} from '../actions'
+import gravatar from '../utils/gravatar'
+import PropTypes from 'prop-types'
 import '../assets/styles/components/Header.scss'
-import user from '../assets/static/usuario.png'
+import userPicture from '../assets/static/usuario.png'
 
-const Header = () => (
+const Header = props => {
+    
+    const { user, isLogin, isRegister, isNotFound } = props;
+    const hasUser = Object.keys(user).length > 0;
 
-    <header className="header">
-        <a href="#"><img className="header__img" src="https://raw.githubusercontent.com/platzi/PlatziVideo/feature/react/src/assets/static/logo-platzi-video-BW2.png" alt="Logo de Platzi Video"/></a>
-        <div className="header__menu">
-            <div className="header__menu--profile">
-                <img src={user} alt="User"/>
-                <p>Perfil</p>
+    const handleLogOut = () => {
+        props.logoutRequest({})
+    }
+
+    const headerClass = className('header', {
+        isLogin,
+        isRegister,
+        isNotFound,
+    })
+
+    return(
+        <header className={headerClass}>
+            <Link to="/">
+                <img className="header__img" src="https://raw.githubusercontent.com/platzi/PlatziVideo/feature/react/src/assets/static/logo-platzi-video-BW2.png" alt="Logo de Platzi Video"/>
+            </Link>
+            <div className="header__menu">
+                <div className="header__menu--profile">
+                    { hasUser ?
+                        <img src={gravatar(user.email)} alt="Profile Picture"/>
+                    : 
+                        <img src={userPicture} alt="User"/>
+                    }
+                    <p>Perfil</p>
+                </div>
+                <ul>
+                    { hasUser ?
+                        <li><a href="#">{user.name}</a></li>
+                    : null
+                    }
+                    {hasUser ? 
+                        <li>
+                            <a href="#logOut" onClick={handleLogOut}>Cerrar Sesión</a>
+                        </li>
+                    :
+                        <li>
+                            <Link to="/login">
+                                Iniciar Sesión
+                            </Link>
+                        </li>
+                    }
+                </ul>
             </div>
-            <ul>
-                <li><a href="#">Cuenta</a></li>
-                <li><a href="../login/login.html">Cerrar Sesión</a></li>
-            </ul>
-        </div>
-    </header>
+        </header>
+    )
+}
 
-)
+const mapStateToProps = state => {
+    return {
+        user : state.user
+    }
+}
 
-export default Header;
+const mapDispatchToProps = {
+    logoutRequest
+}
+
+Header.propTypes = {
+    user: PropTypes.object,
+    isLogin: PropTypes.bool,
+    isRegister: PropTypes.bool
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

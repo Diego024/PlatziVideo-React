@@ -7,12 +7,8 @@
     justify-content: center;
 }
 
-.main__title {
-    color:white;
-    font-size: 25px;
-}
-
-.input {
+.main .isHome {
+    width: 70%;
     background-color: rgba(255, 255,255, 0.1);
     border: 2px solid white;
     border-radius: 30px;
@@ -21,9 +17,14 @@
     font-size: 16px;
     height: 50px;
     padding: 0px 20px;
-    width: 70%;
     outline: none;
 }
+.main__title .isFound {
+    // color:white; dejo de funcionar al tratar de usar estilos dinámicos
+    font-size: 25px;
+}
+
+
 ::placeholder {
     color:white;
 }
